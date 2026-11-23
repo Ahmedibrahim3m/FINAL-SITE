@@ -11,7 +11,10 @@ import {
 
 let db: DatabaseSync | null = null;
 
-const dataDir = path.join(process.cwd(), 'data');
+const dataDir = process.env.VERCEL
+  ? path.join('/tmp', 'chemistrypro-data')
+  : path.join(process.cwd(), 'data');
+
 const dbPath = path.join(dataDir, 'chemistrypro.sqlite');
 
 function initializeDatabase(): DatabaseSync {
